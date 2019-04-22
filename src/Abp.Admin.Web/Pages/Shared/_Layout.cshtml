@@ -1,0 +1,20 @@
+﻿@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Components;
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@(ViewBag.Title == null ? "Admin" : ViewBag.Title)</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <abp-style-bundle name="Abp.Admin"></abp-style-bundle>
+    @await RenderSectionAsync("style", false)
+</head>
+<body>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+﻿@using Volo.Abp.Users
+@inject ICurrentUser CurrentUser
+<header>
+    <abp-nav-bar navbar-style="Dark_Dark" class="sticky-top flex-md-nowrap p-0 bg-dark">
+        <abp-navbar-brand class="col-sm-3 col-md-2 mr-0">Admin</abp-navbar-brand>
+        <abp-input placeholder="search"></abp-input>
+        <div class="form-inline my-2 my-lg-0">
+            @if (CurrentUser.IsAuthenticated)
+            {
+                <a class="btn btn-outline-info">Logout: @CurrentUser.UserName</a>
+            }
+            else
+            {
+                <a class="btn btn-info">Login</a>
+            }
+        </div>
+    </abp-nav-bar>
+</header>
