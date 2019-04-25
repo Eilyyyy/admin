@@ -12,6 +12,10 @@ namespace Abp.Admin.EntityFrameworkCore
     {
         public DbSet<AppUser> Users { get; set; }
 
+        public DbSet<Worker> Workers { get; set; }
+
+        public DbSet<Company> Companies { get; set; }
+
         public AdminDbContext(DbContextOptions<AdminDbContext> options)
             : base(options)
         {
