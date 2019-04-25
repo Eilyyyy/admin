@@ -4,8 +4,8 @@
     {
         public const string DbTablePrefix = "App";
 
-        public const string DbSchema = null;
+        public const string DbSchema = "dbo";
 
-        public const bool IsMultiTenancyEnabled = true;
+        public const bool IsMultiTenancyEnabled = false;
     }
 }

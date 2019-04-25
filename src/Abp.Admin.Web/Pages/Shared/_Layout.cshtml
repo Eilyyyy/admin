@@ -1,5 +1,6 @@
-﻿@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Components;
+﻿@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Components
 @using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Abp.Admin.Pages.Components.Header
 
 <!DOCTYPE html>
 
@@ -13,8 +14,18 @@
     @await RenderSectionAsync("style", false)
 </head>
 <body>
-    <div>
-        @RenderBody()
+    @await Component.InvokeAsync(typeof(HeaderViewComponent))
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <nav class="nav flex-column">
+
+                </nav>
+            </div>
+        </div>
     </div>
+    @RenderBody()
+</div>
 </body>
 </html>

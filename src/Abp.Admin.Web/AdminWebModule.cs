@@ -1,5 +1,8 @@
-﻿using System.IO;
+﻿using System.Collections.Concurrent;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading;
 using Localization.Resources.AbpUi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +11,9 @@ using Abp.Admin.EntityFrameworkCore;
 using Abp.Admin.Localization.Admin;
 using Abp.Admin.Menus;
 using Abp.Admin.Permissions;
+using Microsoft.AspNetCore.Rewrite;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Swashbuckle.AspNetCore.Swagger;
 using Volo.Abp;
 using Volo.Abp.Account.Web;
@@ -65,9 +71,8 @@ namespace Abp.Admin
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             var hostingEnvironment = context.Services.GetHostingEnvironment();
-            var configuration = context.Services.GetConfiguration();
-
-            ConfigureDatabaseServices();
+            
+            ConfigureDatabaseServices(context);
             ConfigureAutoMapper();
             ConfigureVirtualFileSystem(hostingEnvironment);
             ConfigureLocalizationServices();
@@ -76,11 +81,18 @@ namespace Abp.Admin
             ConfigureSwaggerServices(context.Services);
         }
 
-        private void ConfigureDatabaseServices()
+        private void ConfigureDatabaseServices(ServiceConfigurationContext context)
         {
+            var configuration = context.Services.GetConfiguration();
+
+            Configure<DbConnectionOptions>(option =>
+            {
+                option.ConnectionStrings.Default = configuration.GetConnectionString("Default");
+            });
+
             Configure<AbpDbContextOptions>(options =>
             {
-                options.UseSqlServer();
+                options.UseSqlite();
             });
         }
 
@@ -159,7 +171,8 @@ namespace Abp.Admin
             {
                 app.UseErrorPage();
             }
-
+            ConcurrentBag<string> b = new ConcurrentBag<string>();
+            
             app.UseVirtualFiles();
             app.UseAuthentication();
 
@@ -167,6 +180,7 @@ namespace Abp.Admin
             {
                 app.UseMultiTenancy();
             }
+            SeedDatabase(context);
 
             app.UseAbpRequestLocalization();
 
@@ -180,7 +194,6 @@ namespace Abp.Admin
 
             app.UseMvcWithDefaultRouteAndArea();
 
-            SeedDatabase(context);
         }
 
         private static void SeedDatabase(ApplicationInitializationContext context)

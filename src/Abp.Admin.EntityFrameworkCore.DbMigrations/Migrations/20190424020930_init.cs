@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Abp.Admin.Migrations
 {
-    public partial class Initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,7 +48,8 @@ namespace Abp.Admin.Migrations
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     JobName = table.Column<string>(maxLength: 128, nullable: false),
                     JobArgs = table.Column<string>(maxLength: 1048576, nullable: false),
-                    TryCount = table.Column<short>(nullable: false, defaultValue: (short)0),
+                    TryCount = table.Column<short>(nullable: false, defaultValue: (short)0)
+                        .Annotation("Sqlite:Autoincrement", true),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     NextTryTime = table.Column<DateTime>(nullable: false),
                     LastTryTime = table.Column<DateTime>(nullable: true),
@@ -180,6 +181,7 @@ namespace Abp.Admin.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false, defaultValue: false),
                     AccessFailedCount = table.Column<int>(nullable: false, defaultValue: 0)
+                        .Annotation("Sqlite:Autoincrement", true)
                 },
                 constraints: table =>
                 {

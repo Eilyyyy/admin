@@ -9,10 +9,8 @@ namespace Abp.Admin.EntityFrameworkCore
     {
         public AdminMigrationsDbContext CreateDbContext(string[] args)
         {
-            var configuration = BuildConfiguration();
-
             var builder = new DbContextOptionsBuilder<AdminMigrationsDbContext>()
-                .UseSqlServer(configuration.GetConnectionString("Default"));
+                .UseSqlite("Data Source=sqlite.db;");
 
             return new AdminMigrationsDbContext(builder.Options);
         }
