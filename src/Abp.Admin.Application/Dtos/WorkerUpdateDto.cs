@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Volo.Abp.Application.Dtos;
+using Abp.Admin.Entities;
 using Volo.Abp.AutoMapper;
 
-namespace Abp.Admin
+namespace Abp.Admin.Dtos
 {
-    [AutoMapFrom(typeof(Worker))]
-    public class WorkerDto : AuditedEntityDto<Guid>
+    [AutoMapTo(typeof(Worker))]
+    public class WorkerUpdateDto
     {
         public string Name { get; set; }
+        public string PhoneNumber { get; set; }
         public string IdentityImageUrl { get; set; }
 
-        public CompanyDto Company { get; set; }
+        public Guid CompanyId { get; set; }
     }
 }

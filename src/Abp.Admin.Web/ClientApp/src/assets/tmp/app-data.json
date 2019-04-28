@@ -55,6 +55,13 @@
           "link": "/widgets",
           "icon": "anticon anticon-appstore",
           "badge": 2
+        },
+        {
+          "text": "公司",
+          "i18n": "menu.widgets",
+          "link": "/company",
+          "icon": "anticon anticon-appstore",
+          "badge": 2
         }
       ]
     },

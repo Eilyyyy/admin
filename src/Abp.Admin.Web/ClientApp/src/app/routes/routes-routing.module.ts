@@ -15,6 +15,7 @@ import { UserRegisterResultComponent } from './passport/register-result/register
 // single pages
 import { CallbackComponent } from './callback/callback.component';
 import { UserLockComponent } from './passport/lock/lock.component';
+import { CompanyComponent } from './company/company.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,7 @@ const routes: Routes = [
       { path: 'exception', loadChildren: './exception/exception.module#ExceptionModule' },
       // 业务子模块
       // { path: 'widgets', loadChildren: './widgets/widgets.module#WidgetsModule' }
+      { path: 'company', component: CompanyComponent, data: {title: '公司'}}
     ]
   },
   // 全屏布局

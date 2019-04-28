@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using Abp.Admin.Entities;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AutoMapper;
 
-namespace Abp.Admin
+namespace Abp.Admin.Dtos
 {
     [AutoMapFrom(typeof(Company))]
     public class CompanyDto : AuditedEntityDto<Guid>

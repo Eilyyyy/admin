@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Abp.Admin.Entities;
 using Volo.Abp.AutoMapper;
 
-namespace Abp.Admin
+namespace Abp.Admin.Dtos
 {
     [AutoMapTo(typeof(Company))]
     public class CompanyUpdateDto

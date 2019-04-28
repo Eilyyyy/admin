@@ -50,6 +50,7 @@ export class StartupService {
       // ACL：设置权限为全量
       this.aclService.setFull(true);
       // 初始化菜单
+      console.log(res.menu);
       this.menuService.add(res.menu);
       // 设置页面标题的后缀
       this.titleService.suffix = res.app.name;
@@ -59,7 +60,7 @@ export class StartupService {
       resolve(null);
     });
   }
-  
+
   private viaMock(resolve: any, reject: any) {
     // const tokenData = this.tokenService.get();
     // if (!tokenData.token) {
@@ -97,6 +98,12 @@ export class StartupService {
           },
           {
             text: '快捷菜单',
+            icon: { type: 'icon', value: 'rocket' },
+            shortcutRoot: true
+          },
+          {
+            text: '公司',
+            link: '/company',
             icon: { type: 'icon', value: 'rocket' },
             shortcutRoot: true
           }

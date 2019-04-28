@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Abp.Admin.Entities;
+using Microsoft.EntityFrameworkCore;
 using Abp.Admin.Users;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
