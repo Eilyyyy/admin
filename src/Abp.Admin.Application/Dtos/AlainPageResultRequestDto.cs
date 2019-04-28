@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Volo.Abp.Application.Dtos;
 
@@ -7,8 +8,11 @@ namespace Abp.Admin.Dtos
 {
     public class AlainPageResultRequestDto : IPagedResultRequest
     {
-        public int Pi { get; set; }
-        public int Ps { get; set; }
+        [Range(1, int.MaxValue)]
+        public int Pi { get; set; } = 1;
+
+        [Range(1, 100)]
+        public int Ps { get; set; } = 10;
         public int MaxResultCount
         {
             get => Ps;

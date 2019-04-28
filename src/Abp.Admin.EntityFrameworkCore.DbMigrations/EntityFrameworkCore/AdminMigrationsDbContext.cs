@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Abp.Admin.Entities;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -12,6 +13,10 @@ namespace Abp.Admin.EntityFrameworkCore
 {
     public class AdminMigrationsDbContext : AbpDbContext<AdminMigrationsDbContext>
     {
+        public DbSet<Worker> Workers { get; set; }
+
+        public DbSet<Company> Companies { get; set; }
+
         public AdminMigrationsDbContext(DbContextOptions<AdminMigrationsDbContext> options) 
             : base(options)
         {

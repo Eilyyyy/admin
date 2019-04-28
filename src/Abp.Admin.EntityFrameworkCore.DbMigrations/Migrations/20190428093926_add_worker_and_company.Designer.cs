@@ -3,14 +3,16 @@ using System;
 using Abp.Admin.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Abp.Admin.Migrations
 {
     [DbContext(typeof(AdminMigrationsDbContext))]
-    partial class AdminMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190428093926_add_worker_and_company")]
+    partial class add_worker_and_company
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
